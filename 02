@@ -1,0 +1,9 @@
+num = 0
+contador = int(input("Quantos números voçe vai digirar: "))
+
+cont =1
+while  cont <= contador :
+    num2 = int(input(f"Digite o {cont}: "))
+    num+=num2
+    cont +=1
+print(f"O valor digitado foi {num}")
