@@ -1,0 +1,3 @@
+x = input("Digite uma palavra: ")
+
+print(x[0:1])
