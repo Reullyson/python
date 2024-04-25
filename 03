@@ -1,0 +1,8 @@
+nom = 0
+lista = int(input("Digite quantas palavras: "))
+
+cont = 1
+while cont <= lista:
+    p = int(input(f"Digite sua palavra: {cont}: "))
+    p.sort(3)
+    cont =+1
