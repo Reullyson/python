@@ -1,0 +1,83 @@
+class Medico:
+    def __init__(self, nome, especialidade):
+        self.nome = nome
+        self.especialidade = especialidade
+
+class Paciente:
+    def __init__(self, nome, idade):
+        self.nome = nome
+        self.idade = idade
+
+class Atendimento:
+    def __init__(self, medico, paciente, data):
+        self.medico = medico
+        self.paciente = paciente
+        self.data = data
+
+medicos = []
+pacientes = []
+atendimentos = []
+
+def cadastrar_medico():
+    nome = input("Informe o nome do médico: ")
+    especialidade = input("Informe a especialidade do médico: ")
+    medico = Medico(nome, especialidade)
+    medicos.append(medico)
+    print("Médico cadastrado com sucesso!")
+
+def cadastrar_paciente():
+    nome = input("Informe o nome do paciente: ")
+    idade = int(input("Informe a idade do paciente: "))
+    paciente = Paciente(nome, idade)
+    pacientes.append(paciente)
+    print("Paciente cadastrado com sucesso!")
+
+def cadastrar_atendimento():
+    medico_nome = input("Informe o nome do médico: ")
+    paciente_nome = input("Informe o nome do paciente: ")
+    data = input("Informe a data do atendimento: ")
+    medico = next((m for m in medicos if m.nome == medico_nome), None)
+    paciente = next((p for p in pacientes if p.nome == paciente_nome), None)
+    if medico and paciente:
+        atendimento = Atendimento(medico, paciente, data)
+        atendimentos.append(atendimento)
+        print("Atendimento cadastrado com sucesso!")
+    else:
+        print("Médico ou paciente não encontrado!")
+
+def listar_atendimentos():
+    for atendimento in atendimentos:
+        print(f"Atendimento: {atendimento.medico.nome} - {atendimento.paciente.nome} - {atendimento.data}")
+
+def buscar_atendimentos_por_medico():
+    medico_nome = input("Informe o nome do médico: ")
+    atendimentos_por_medico = [a for a in atendimentos if a.medico.nome == medico_nome]
+    if atendimentos_por_medico:
+        for atendimento in atendimentos_por_medico:
+            print(f"Atendimento: {atendimento.medico.nome} - {atendimento.paciente.nome} - {atendimento.data}")
+    else:
+        print("Nenhum atendimento encontrado para este médico!")
+
+while True:
+    print("Menu Principal:")
+    print("1. Cadastrar médico")
+    print("2. Cadastrar paciente")
+    print("3. Cadastrar atendimento")
+    print("4. Listar atendimentos")
+    print("5. Buscar atendimentos por médico")
+    print("-1. Sair")
+    opcao = int(input("Informe a opção: "))
+    if opcao == -1:
+        break
+    elif opcao == 1:
+        cadastrar_medico()
+    elif opcao == 2:
+        cadastrar_paciente()
+    elif opcao == 3:
+        cadastrar_atendimento()
+    elif opcao == 4:
+        listar_atendimentos()
+    elif opcao == 5:
+        buscar_atendimentos_por_medico()
+    else:
+        print("Opção inválida!")
